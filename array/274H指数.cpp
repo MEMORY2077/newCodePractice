@@ -1,0 +1,18 @@
+#include <algorithm>
+#include <vector>
+using namespace std;
+bool us2sort(int &a,int &b){
+    return a>=b;
+}
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        sort(citations.begin(),citations.end(),us2sort);
+        int n=citations.size();
+        int ans=0;
+        for(int i=0;i<n;i++){
+            ans=max(ans,min(citations[i],i+1));
+        }
+        return ans;
+    }
+};
